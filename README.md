@@ -9,24 +9,23 @@
 6）构建模型,定义损失函数和优化器<br>
 7) 训练模型和评估模型<br>
 >> ### CNN:<br>
->>> 1) 输入数据并预处理数据:把上述 trX 和 teX 的形状变为[-1,28,28,1],-1 表示不格虑输入图片的数量,28×28 是图片的长和宽的像素数,1 是通道(channel)数量,因为 MNIST 的图片是黑白的,所以通道是 1,如果是 RGB 彩色图像,通道是 3<br>
->>> 2) 初始化权重与定义格络结构:设置卷积核的大小为 3×3:<br>
-3) 定义一个模型函数:<br>
+>>> 1) 输入数据并预处理数据:把上述 trX 和 teX 的形状变为[-1,28,28,1],-1 表示不格虑输入图片的数量,28×28 是图片的长和宽的像素数,1 是通道(channel)数量,因为 MNIST 的图片是黑白的,所以通道是 1,如果是 RGB 彩色图像,通道是 3 <br>
+>>> 2) 初始化权重与定义格络结构:设置卷积核的大小为 3×3<br>
+>>> 3) 定义一个模型函数:<br>
 [conv2d -> max_pool -> dropout] * 3-> 全链接层 -> droupt -> out<br>
-4) 定义损失函数: tf.nn.softmax_cross_entropy_with_logits<br>
+>>> 4) 定义损失函数: tf.nn.softmax_cross_entropy_with_logits<br>
 优化器:tf.train.RMSPropOptimizer<br>
-5) 训练模型和评估模型<br>
+>>> >>> 5) 训练模型和评估模型<br>
 >> ### RNN:<br>
 >>> 1) 加载数据<br>
-2) 为了使用 RNN 来分类图片,我们把每张图片的行看成是一个像素序列(sequence)。因为MNIST 图片的大小是 28×28 像素,
-所以我们把每一个图像样本看成一行行的序列。因此,共有(28 个元素的序列)×(28 行),然后每一步输入的序列长度是 28,输入的步数是 28 步<br>
-3）定义超参数、神经网络参数、输入数据及权重<br>
-4） 构建  RNN 模型：<br>
+>>> 2) 为了使用 RNN 来分类图片,我们把每张图片的行看成是一个像素序列(sequence)。因为MNIST 图片的大小是 28×28 像素,所以我们把每一个图像样本看成一行行的序列。因此,共有(28 个元素的序列)×(28 行),然后每一步输入的序列长度是 28,输入的步数是 28 步<br>
+>>> 3）定义超参数、神经网络参数、输入数据及权重<br>
+>>> 4） 构建  RNN 模型：<br>
 reshape -> matmul -> reshape ->  采用基本的 LSTM 循环网络单元 tf.contrib.rnn.BasicLSTMCell ->
 初始化为零值, lstm 单元由两个部分组成: (c_state, h_state) lstm_cell.zero_state -> 
 dynamic_rnn 接收张量 (batch, steps, inputs) 或者 (steps, batch, inputs) 作为 X_in -> tf.nn.dynamic_rnn -> tf.matmul<br>
-5) 定义损失函数和优化器,优化器采用 AdamOptimizer<br>
-6) 训练数据及评估模型<br>
+>>> 5) 定义损失函数和优化器,优化器采用 AdamOptimizer<br>
+>>> 6) 训练数据及评估模型<br>
 >> ### 回归:<br>
 >>> 1)加载数据<br>
 2）优化器：tf.train.GradientDescentOptimizer<br>
